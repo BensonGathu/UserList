@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Apis {
-  final String baseUrl = 'http://localhost:4000';
+  final String baseUrl = 'http://10.0.2.2:4000';
   final String version = '/api/v1';
   final String users = '/users';
 

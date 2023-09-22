@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:usersapp/providers/userDataProvider.dart';
 import 'package:usersapp/screens/homePage.dart';
 
 class StartUpScreen extends StatefulWidget {
@@ -53,7 +54,12 @@ class _StartUpScreenState extends State<StartUpScreen>
     super.initState();
   }
 
-  getAppData() {}
+  getAppData() async {
+    var allUsersDataProvider =
+        Provider.of<UserDataProvider>(context, listen: false);
+    await allUsersDataProvider.fetchAllUsers();
+  }
+
   void _navigateToDifferentPage() {
     if (!_isLoading) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -61,12 +67,11 @@ class _StartUpScreenState extends State<StartUpScreen>
       ));
     }
   }
-
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
