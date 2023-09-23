@@ -1,24 +1,32 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:usersapp/providers/userDataProvider.dart';
 import 'package:usersapp/screens/homePage.dart';
 
-class StartUpScreen extends StatefulWidget {
-  const StartUpScreen({super.key});
+class StartUpScreen extends StatelessWidget {
+  const StartUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<StartUpScreen> createState() => _StartUpScreenState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: StartUpScreenBody(),
+    );
+  }
 }
 
-class _StartUpScreenState extends State<StartUpScreen>
+class StartUpScreenBody extends StatefulWidget {
+  @override
+  _StartUpScreenBodyState createState() => _StartUpScreenBodyState();
+}
+
+class _StartUpScreenBodyState extends State<StartUpScreenBody>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
   bool _isLoading = true;
+
   @override
   void initState() {
     Future.delayed(Duration.zero, () async {
@@ -67,27 +75,24 @@ class _StartUpScreenState extends State<StartUpScreen>
       ));
     }
   }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final bool isDarkMode = theme.brightness == Brightness.dark;
-    return Scaffold(
-      backgroundColor: isDarkMode ? Colors.black : Colors.white,
-      body: Center(
-        child: AnimatedBuilder(
-          animation: _colorAnimation,
-          builder: (context, child) {
-            return SpinKitFadingCircle(
-              color: _colorAnimation.value!,
-              size: 50.0,
-            );
-          },
-        ),
+    return Center(
+      child: AnimatedBuilder(
+        animation: _colorAnimation,
+        builder: (context, child) {
+          return SpinKitFadingCircle(
+            color: _colorAnimation.value!,
+            size: 50.0,
+          );
+        },
       ),
     );
   }

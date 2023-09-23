@@ -5,8 +5,11 @@ import 'package:usersapp/models/userModel.dart';
 import 'package:usersapp/services/api.dart';
 
 class UserDataProvider extends ChangeNotifier {
+  // List to store fetched User data
   List<UserModel> _allUsers = [];
   List<UserModel> get allUsers => _allUsers;
+  
+  // Flag to track whether the data has been loaded
   bool _isDataLoaded = false; 
 
   bool get isDataLoaded => _isDataLoaded; 
@@ -19,7 +22,7 @@ class UserDataProvider extends ChangeNotifier {
         var userItems = json.decode(response.body);
         _allUsers = List<UserModel>.from(
             userItems.map((image) => UserModel.fromJson(image)));
-        _isDataLoaded = true; 
+        _isDataLoaded = true; // Mark data as loaded
         notifyListeners();
       } else {
         // Handle error here, such as displaying an error message or logging.

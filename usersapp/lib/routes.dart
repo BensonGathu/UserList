@@ -6,11 +6,14 @@ class Routes {
   static const String home = '/';
   static const String startupScreen = '/startUpScreen';
 
+  // Route generation logic based on route settings
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case startupScreen:
-        return MaterialPageRoute(builder: (_) =>const StartUpScreen());
+        // Navigate to the StartUpScreen route
+        return MaterialPageRoute(builder: (_) => const StartUpScreen());
       case home:
+        // Navigate to the HomePageScreen route
         return MaterialPageRoute(builder: (_) => const HomePageScreen());
 
       default:
@@ -19,6 +22,7 @@ class Routes {
     }
   }
 
+  // Route for handling unknown routes or invalid arguments
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
