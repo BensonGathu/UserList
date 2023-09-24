@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorKey,
       darkTheme: ThemeData.dark(),
       initialRoute: '/startUpScreen',
-      onGenerateRoute: Routes.generateRoute, // Define route generation logic
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

@@ -36,8 +36,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
           title: "My Users", // Title displayed in the app bar
         ),
       ),
-      body: RefreshIndicator(
-        // Callback function for the "pull to refresh" action
+      // This widget allows the user to refresh the pagehence checking any data updates..
+      body: RefreshIndicator( 
         onRefresh: () => _refreshData(context),
         child: ListView.builder(
           itemCount: allUsersDataProvider.allUsers.length,

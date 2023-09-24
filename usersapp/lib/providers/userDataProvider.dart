@@ -1,3 +1,7 @@
+
+// Using Provider for state management to simplify user data handling
+// and ensure efficient updates across the app.
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -13,7 +17,7 @@ class UserDataProvider extends ChangeNotifier {
   bool _isDataLoaded = false; 
 
   bool get isDataLoaded => _isDataLoaded; 
-
+// Function to get data using our exisitng API
   Future<void> fetchAllUsers() async {
     try {
       var response = await Apis().fetchUsers();
